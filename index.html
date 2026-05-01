@@ -1,0 +1,1260 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="color-scheme" content="light only" />
+<meta name="theme-color" content="#f5efe1" />
+<title>TJ's Graduation Weekend · May 7–10, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: light;
+    --crimson: #990000;
+    --crimson-deep: #6b0000;
+    --crimson-soft: #fdf2f2;
+    --cream: #f5efe1;
+    --cream-deep: #ede4cf;
+    --paper: #fbf6ea;
+    --ink: #1a1612;
+    --ink-soft: #4a4540;
+    --ink-muted: #8a8275;
+    --rule: #e0d6bf;
+    --rule-soft: #ebe2cb;
+    --gold: #b8893a;
+    --shadow-sm: 0 1px 2px rgba(60, 40, 20, 0.05), 0 2px 8px rgba(60, 40, 20, 0.05);
+    --shadow-md: 0 2px 4px rgba(60, 40, 20, 0.06), 0 12px 32px rgba(60, 40, 20, 0.08);
+    --shadow-lg: 0 4px 8px rgba(60, 40, 20, 0.08), 0 24px 48px rgba(60, 40, 20, 0.1);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Geist', -apple-system, sans-serif;
+    background-color: var(--cream);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    background-image:
+      /* Subtle horizontal paper fibers */
+      repeating-linear-gradient(
+        0deg,
+        transparent 0px,
+        transparent 2px,
+        rgba(120, 90, 50, 0.012) 2px,
+        rgba(120, 90, 50, 0.012) 3px
+      ),
+      /* Subtle vertical paper fibers */
+      repeating-linear-gradient(
+        90deg,
+        transparent 0px,
+        transparent 3px,
+        rgba(120, 90, 50, 0.008) 3px,
+        rgba(120, 90, 50, 0.008) 4px
+      ),
+      /* Fine grain noise (SVG-encoded for paper grain) */
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.4 0 0 0 0 0.3 0 0 0 0 0.15 0 0 0 0.18 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E"),
+      /* Warm vignette and corner soft tones */
+      radial-gradient(ellipse at 15% 0%, rgba(184, 137, 58, 0.06) 0%, transparent 55%),
+      radial-gradient(ellipse at 85% 100%, rgba(153, 0, 0, 0.04) 0%, transparent 55%),
+      radial-gradient(ellipse at 50% 50%, transparent 60%, rgba(120, 90, 50, 0.06) 100%);
+    background-attachment: fixed, fixed, fixed, fixed, fixed, fixed;
+    background-size: auto, auto, 200px 200px, auto, auto, auto;
+  }
+
+  .container { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    padding: 80px 32px 56px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 1px; height: 48px;
+    background: var(--crimson);
+    opacity: 0.5;
+  }
+  .hero-eyebrow {
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--crimson);
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.1s forwards;
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: clamp(48px, 7vw, 88px);
+    line-height: 0.98;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    margin-bottom: 8px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--crimson);
+  }
+  .hero-sub {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--ink-soft);
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.3s forwards;
+  }
+  .hero-meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    font-family: 'Geist Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s forwards;
+  }
+  .hero-meta span { display: inline-flex; align-items: center; gap: 6px; }
+  .hero-meta .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--ink-muted); }
+  .live-indicator {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #16a34a;
+    box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.5);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.5); }
+    70% { box-shadow: 0 0 0 8px rgba(22, 163, 74, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(22, 163, 74, 0); }
+  }
+
+  /* ---------- COUNTDOWN ---------- */
+  .countdown {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 32px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.5s forwards;
+  }
+  .countdown-item {
+    text-align: center;
+    min-width: 64px;
+  }
+  .countdown-num {
+    font-family: 'Fraunces', serif;
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 1;
+    color: var(--crimson);
+  }
+  .countdown-label {
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--ink-muted);
+    margin-top: 6px;
+  }
+
+  /* ---------- ALERT ---------- */
+  .alert {
+    background: linear-gradient(135deg, #fef9ec 0%, #fdf3d6 100%);
+    border-left: 3px solid var(--gold);
+    border-radius: 4px;
+    padding: 18px 22px;
+    margin: 48px auto 0;
+    max-width: 920px;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .alert-icon { font-size: 18px; line-height: 1.4; }
+  .alert-content { flex: 1; font-size: 14px; line-height: 1.6; color: var(--ink-soft); }
+  .alert-content strong { color: #8a6a1c; }
+
+  /* ---------- SECTIONS ---------- */
+  section { padding: 64px 0; }
+  .section-head {
+    margin-bottom: 36px;
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 16px;
+  }
+  .section-num {
+    font-family: 'Geist Mono', monospace;
+    font-size: 12px;
+    color: var(--crimson);
+    font-weight: 500;
+    letter-spacing: 0.1em;
+  }
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: 32px;
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+  }
+  .section-title em { font-style: italic; color: var(--crimson); font-weight: 400; }
+
+  /* ---------- AT-A-GLANCE STRIP ---------- */
+  .glance {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+  .glance-card {
+    background: var(--paper);
+    padding: 24px 20px;
+    transition: background 0.3s, transform 0.3s;
+    cursor: pointer;
+    position: relative;
+  }
+  .glance-card:hover {
+    background: var(--crimson-soft);
+  }
+  .glance-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--crimson);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.3, 1);
+  }
+  .glance-card:hover::after { transform: scaleX(1); }
+  .glance-day {
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-muted);
+    margin-bottom: 8px;
+  }
+  .glance-date {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+  .glance-loc {
+    font-size: 12px;
+    color: var(--crimson);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 14px;
+  }
+  .glance-temp {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    color: var(--ink-soft);
+    line-height: 1;
+  }
+  .glance-temp .lo { color: var(--ink-muted); }
+  .glance-cond {
+    font-size: 12px;
+    color: var(--ink-muted);
+    margin-top: 6px;
+    font-style: italic;
+  }
+  .glance-temp.skel, .glance-cond.skel {
+    color: transparent;
+    background: linear-gradient(90deg, #eee 0%, #f5f5f5 50%, #eee 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.4s infinite;
+    border-radius: 3px;
+    display: inline-block;
+    min-width: 80px;
+    height: 18px;
+  }
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  /* ---------- LOGISTICS GRID ---------- */
+  .logistics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .log-card {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 28px;
+    transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.3, 1), box-shadow 0.3s, border-color 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .log-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--crimson);
+  }
+  .log-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--crimson);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.3, 1);
+  }
+  .log-card:hover::before { transform: scaleX(1); }
+  .log-cat {
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--crimson);
+    margin-bottom: 10px;
+  }
+  .log-title {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 18px;
+    color: var(--ink);
+  }
+  .log-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--rule-soft);
+    font-size: 13px;
+    gap: 12px;
+  }
+  .log-row:last-child { border-bottom: none; }
+  .log-label {
+    color: var(--ink-muted);
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    flex-shrink: 0;
+  }
+  .log-val { color: var(--ink); text-align: right; font-weight: 500; }
+  .log-val .sub { display: block; font-weight: 400; font-size: 12px; color: var(--ink-muted); margin-top: 2px; }
+
+  /* ---------- APPENDIX / PLACES ---------- */
+  .places-sub {
+    font-size: 13px;
+    color: var(--ink-muted);
+    margin: -16px 0 24px;
+    font-style: italic;
+  }
+  .places {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  @media (max-width: 720px) {
+    .places { grid-template-columns: 1fr; }
+  }
+  .place {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 18px;
+    background: transparent;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .place:hover {
+    background: var(--paper);
+    border-color: var(--crimson);
+  }
+  .place-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--crimson-soft);
+    color: var(--crimson);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 14px;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+  }
+  .place-body { flex: 1; min-width: 0; }
+  .place-cat {
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--ink-muted);
+    margin-bottom: 3px;
+  }
+  .place-name {
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.2;
+    margin-bottom: 3px;
+  }
+  .place-addr {
+    font-size: 12px;
+    color: var(--ink-soft);
+    line-height: 1.4;
+  }
+  .place-arrow {
+    color: var(--ink-muted);
+    font-family: 'Geist Mono', monospace;
+    font-size: 13px;
+    align-self: center;
+    transition: transform 0.2s, color 0.2s;
+    flex-shrink: 0;
+  }
+  .place:hover .place-arrow {
+    transform: translateX(3px);
+    color: var(--crimson);
+  }
+
+  /* ---------- DAYS ---------- */
+  .days { display: flex; flex-direction: column; gap: 16px; }
+  .day {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: box-shadow 0.3s, border-color 0.3s;
+  }
+  .day:hover { box-shadow: var(--shadow-sm); }
+  .day.open { box-shadow: var(--shadow-md); border-color: var(--rule); }
+
+  .day-header {
+    display: grid;
+    grid-template-columns: 60px 1fr auto auto;
+    gap: 24px;
+    align-items: center;
+    padding: 24px 32px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+  }
+  .day-header:hover { background: var(--crimson-soft); }
+
+  .day-num {
+    font-family: 'Fraunces', serif;
+    font-size: 44px;
+    font-weight: 400;
+    line-height: 1;
+    color: var(--crimson);
+    text-align: center;
+  }
+  .day-num .month {
+    display: block;
+    font-family: 'Geist Mono', monospace;
+    font-size: 9px;
+    color: var(--ink-muted);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  .day-info { min-width: 0; }
+  .day-name {
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .day-title {
+    font-family: 'Fraunces', serif;
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .day-loc {
+    font-size: 13px;
+    color: var(--ink-muted);
+  }
+  .day-loc strong { color: var(--crimson); font-weight: 500; }
+
+  .day-weather {
+    text-align: right;
+    min-width: 130px;
+  }
+  .day-weather-temp {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    color: var(--ink);
+  }
+  .day-weather-temp .lo { color: var(--ink-muted); }
+  .day-weather-cond {
+    font-size: 12px;
+    color: var(--ink-muted);
+    font-style: italic;
+    margin-top: 2px;
+  }
+  .day-weather .skel {
+    color: transparent;
+    background: linear-gradient(90deg, #eee 0%, #f5f5f5 50%, #eee 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.4s infinite;
+    border-radius: 3px;
+    display: inline-block;
+    min-width: 80px;
+    height: 16px;
+  }
+
+  .day-toggle {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    border: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.3, 1), background 0.2s, border-color 0.2s;
+    color: var(--ink-soft);
+  }
+  .day-header:hover .day-toggle { background: var(--crimson); border-color: var(--crimson); color: white; }
+  .day.open .day-toggle { transform: rotate(180deg); background: var(--crimson); border-color: var(--crimson); color: white; }
+
+  .day-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.2, 0.7, 0.3, 1);
+  }
+  .day.open .day-body { max-height: 2000px; }
+  .day-body-inner {
+    padding: 0 32px 32px;
+    border-top: 1px solid var(--rule);
+    padding-top: 28px;
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 40px;
+  }
+  @media (max-width: 720px) {
+    .day-body-inner { grid-template-columns: 1fr; gap: 24px; }
+  }
+
+  .schedule { display: flex; flex-direction: column; }
+  .sched-item {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 20px;
+    padding: 14px 0;
+    border-bottom: 1px dashed var(--rule-soft);
+    align-items: baseline;
+  }
+  .sched-item:last-child { border-bottom: none; }
+  .sched-time {
+    font-family: 'Geist Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--crimson);
+    letter-spacing: 0.04em;
+  }
+  .sched-act {
+    font-size: 14px;
+    color: var(--ink);
+    line-height: 1.55;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    justify-content: space-between;
+  }
+  .sched-act > span:first-child { flex: 1; }
+  .sched-act strong { font-weight: 600; }
+  .sched-pin {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--cream-deep);
+    color: var(--crimson);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s, color 0.2s;
+    margin-top: -2px;
+  }
+  .sched-pin:hover {
+    background: var(--crimson);
+    color: white;
+    transform: scale(1.1);
+  }
+  .sched-pin svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .day-side {
+    background: var(--cream-deep);
+    border-radius: 8px;
+    padding: 20px;
+    height: fit-content;
+  }
+  .day-side h4 {
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--crimson);
+    margin-bottom: 14px;
+    font-weight: 500;
+  }
+  .wx-detail-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    font-size: 13px;
+    color: var(--ink-soft);
+    border-bottom: 1px dashed var(--rule);
+  }
+  .wx-detail-row:last-child { border-bottom: none; }
+  .wx-detail-row span:last-child { color: var(--ink); font-family: 'Geist Mono', monospace; font-size: 12px; }
+  .day-note {
+    margin-top: 16px;
+    font-size: 12px;
+    color: var(--ink-muted);
+    font-style: italic;
+    line-height: 1.55;
+    padding-left: 12px;
+    border-left: 2px solid var(--gold);
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    padding: 64px 32px 80px;
+    text-align: center;
+    border-top: 1px solid var(--rule);
+    margin-top: 32px;
+  }
+  .footer-mark {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--crimson);
+    margin-bottom: 8px;
+  }
+  .footer-meta {
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .refresh-btn {
+    margin-top: 20px;
+    background: transparent;
+    border: 1px solid var(--rule);
+    color: var(--ink-soft);
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding: 10px 20px;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .refresh-btn:hover {
+    background: var(--crimson);
+    border-color: var(--crimson);
+    color: white;
+  }
+  .refresh-btn .spin { display: inline-block; transition: transform 0.5s; }
+  .refresh-btn.loading .spin { animation: rotate 1s linear infinite; }
+  @keyframes rotate { to { transform: rotate(360deg); } }
+
+  /* ---------- ANIMATIONS ---------- */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s, transform 0.7s cubic-bezier(0.2, 0.7, 0.3, 1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 900px) {
+    .logistics, .glance { grid-template-columns: 1fr 1fr; }
+    .day-header { grid-template-columns: 50px 1fr auto; gap: 16px; padding: 20px; }
+    .day-weather { display: none; }
+    .day-num { font-size: 36px; }
+    .day-title { font-size: 19px; }
+  }
+  @media (max-width: 540px) {
+    .container { padding: 0 20px; }
+    .hero { padding: 56px 20px 40px; }
+    .countdown { gap: 14px; }
+    .countdown-num { font-size: 28px; }
+    .glance { grid-template-columns: 1fr 1fr; }
+    .logistics { grid-template-columns: 1fr; }
+    section { padding: 48px 0; }
+    .section-title { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-eyebrow">Indiana University · Kelley School of Business</div>
+  <h1>Graduation <em>Weekend</em></h1>
+  <div class="hero-sub">Indianapolis &amp; Bloomington · May 7–10, 2026</div>
+  <div class="hero-meta">
+    <span><span class="live-indicator"></span> Live weather</span>
+    <span class="dot"></span>
+    <span id="updated-stamp">Loading…</span>
+  </div>
+  <div class="countdown" id="countdown">
+    <div class="countdown-item"><div class="countdown-num" id="cd-days">—</div><div class="countdown-label">Days</div></div>
+    <div class="countdown-item"><div class="countdown-num" id="cd-hours">—</div><div class="countdown-label">Hours</div></div>
+    <div class="countdown-item"><div class="countdown-num" id="cd-mins">—</div><div class="countdown-label">Min</div></div>
+  </div>
+</header>
+
+<div class="container">
+</div>
+
+<section class="container reveal">
+  <div class="section-head">
+    <span class="section-num">01</span>
+    <h2 class="section-title">At a <em>Glance</em></h2>
+  </div>
+  <div class="glance" id="glance"></div>
+</section>
+
+<section class="container reveal">
+  <div class="section-head">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Logistics</h2>
+  </div>
+  <div class="logistics">
+    <div class="log-card">
+      <div class="log-cat">Outbound · Thu May 7</div>
+      <div class="log-title">DFW → IND</div>
+      <div class="log-row"><span class="log-label">Carrier</span><span class="log-val">American 2191</span></div>
+      <div class="log-row"><span class="log-label">Depart</span><span class="log-val">11:35 AM<span class="sub">Dallas / Fort Worth</span></span></div>
+      <div class="log-row"><span class="log-label">Arrive</span><span class="log-val">2:48 PM<span class="sub">Indianapolis</span></span></div>
+      <div class="log-row"><span class="log-label">Confirmation</span><span class="log-val">KBEDKV</span></div>
+    </div>
+    <div class="log-card">
+      <div class="log-cat">Return · Sun May 10</div>
+      <div class="log-title">IND → DFW</div>
+      <div class="log-row"><span class="log-label">Carrier</span><span class="log-val">American 2180</span></div>
+      <div class="log-row"><span class="log-label">Depart</span><span class="log-val">11:49 AM<span class="sub">Indianapolis</span></span></div>
+      <div class="log-row"><span class="log-label">Arrive</span><span class="log-val">1:18 PM<span class="sub">Dallas / Fort Worth</span></span></div>
+      <div class="log-row"><span class="log-label">Confirmation</span><span class="log-val">KBEDKV</span></div>
+    </div>
+    <div class="log-card">
+      <div class="log-cat">Lodging · 3 nights</div>
+      <div class="log-title">Airbnb · Hosted by Austin</div>
+      <div class="log-row"><span class="log-label">Address</span><span class="log-val">1243 Drive MLK Jr St<span class="sub">Indianapolis, IN</span></span></div>
+      <div class="log-row"><span class="log-label">Check-in</span><span class="log-val">Thu, 4:00 PM</span></div>
+      <div class="log-row"><span class="log-label">Checkout</span><span class="log-val">Sun, 11:00 AM</span></div>
+    </div>
+    <div class="log-card">
+      <div class="log-cat">Turo</div>
+      <div class="log-title">Mercedes-Benz GLS · 2021</div>
+      <div class="log-row"><span class="log-label">Pickup</span><span class="log-val">Thu, 12:00 PM<span class="sub">IND Airport</span></span></div>
+      <div class="log-row"><span class="log-label">Return</span><span class="log-val">Sun, 12:00 PM<span class="sub">IND Airport</span></span></div>
+    </div>
+    <div class="log-card">
+      <div class="log-cat">National</div>
+      <div class="log-title">Midsize · Toyota Corolla</div>
+      <div class="log-row"><span class="log-label">Pickup</span><span class="log-val">Thu, 10:00 AM<span class="sub">Executive Area, IND</span></span></div>
+      <div class="log-row"><span class="log-label">Confirmation</span><span class="log-val">#1489431856</span></div>
+      <div class="log-row"><span class="log-label">Emerald Club</span><span class="log-val">171744930</span></div>
+    </div>
+    <div class="log-card">
+      <div class="log-cat">Reservations</div>
+      <div class="log-title">Dinners &amp; Ceremony</div>
+      <div class="log-row"><span class="log-label">Fri 8 PM</span><span class="log-val">Vida<span class="sub">Date night · party of 2</span></span></div>
+      <div class="log-row"><span class="log-label">Sat 3 PM</span><span class="log-val">Max's Place<span class="sub">Bloomington · group</span></span></div>
+      <div class="log-row"><span class="log-label">Sat 7 PM</span><span class="log-val">Kelley Direct Ceremony<span class="sub">IU Auditorium</span></span></div>
+    </div>
+  </div>
+</section>
+
+<section class="container reveal">
+  <div class="section-head">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Daily <em>Plan</em></h2>
+  </div>
+  <div class="days" id="days"></div>
+</section>
+
+<section class="container reveal">
+  <div class="section-head">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Appendix · <em>Addresses</em></h2>
+  </div>
+  <p class="places-sub">All venues for the weekend. Tap any address to open in your maps app.</p>
+  <div class="places" id="places"></div>
+</section>
+
+<footer>
+  <div class="footer-mark">Go Hoosiers · Class of 2026</div>
+  <div class="footer-meta" id="footer-meta">Live forecast from Open-Meteo</div>
+  <button class="refresh-btn" id="refresh-btn">
+    <span class="spin">↻</span> Refresh weather
+  </button>
+</footer>
+
+<script>
+  // -------- TRIP CONFIG --------
+  const TRIP_START = new Date('2026-05-07T17:35:00-05:00'); // DFW depart, central
+  const INDY = { lat: 39.7684, lon: -86.1581, name: 'Indianapolis' };
+  const BLOOM = { lat: 39.1653, lon: -86.5264, name: 'Bloomington' };
+
+  const DAYS = [
+    {
+      id: 'thu',
+      date: new Date('2026-05-07'),
+      day: 7,
+      weekday: 'Thursday',
+      title: 'Arrival in Indianapolis',
+      location: 'Indianapolis',
+      loc: INDY,
+      schedule: [
+        { time: '11:35 AM', text: '<strong>Depart DFW</strong> — American 2191' },
+        { time: '2:48 PM',  text: '<strong>Arrive IND</strong>', addr: '7800 Col. H. Weir Cook Memorial Dr, Indianapolis, IN' },
+        { time: 'After landing', text: 'Pick up National midsize at the Executive Area', addr: '7800 Col. H. Weir Cook Memorial Dr, Indianapolis, IN' },
+        { time: 'After landing', text: 'Pick up Turo Mercedes-Benz GLS (push window with host)', addr: '7800 Col. H. Weir Cook Memorial Dr, Indianapolis, IN' },
+        { time: '4:00 PM',  text: '<strong>Airbnb check-in</strong> — 1243 Drive MLK Jr St', addr: '1243 Drive Martin Luther King Junior Street, Indianapolis, IN' },
+        { time: 'Evening',  text: 'Settle in, low-key dinner near the Airbnb' },
+        { time: '9:00–10:15 PM', text: '<strong>TJ — Kelley Direct class</strong> (virtual)' },
+      ],
+      note: 'Travel day — keep plans light. Confirm BabyQuip gear is at the house. Set up a quiet workspace for class.',
+    },
+    {
+      id: 'fri',
+      date: new Date('2026-05-08'),
+      day: 8,
+      weekday: 'Friday',
+      title: 'Indianapolis Day',
+      location: 'Indianapolis',
+      loc: INDY,
+      schedule: [
+        { time: 'Morning',  text: 'Children\u2019s Museum of Indianapolis', addr: '3000 N Meridian St, Indianapolis, IN 46208' },
+        { time: 'Lunch',    text: 'Group lunch downtown or near the Canal Walk' },
+        { time: 'Afternoon', text: 'Conner Prairie OR Indy Canal Walk (weather-dependent)', addr: '13400 Allisonville Rd, Fishers, IN 46038' },
+        { time: 'Early evening', text: 'Family dinner with the larger group' },
+        { time: '8:00 PM',  text: '<strong>TJ + Catherine — Vida</strong> (date night, reservation confirmed)', addr: '601 E New York St, Indianapolis, IN 46202' },
+      ],
+      note: 'Lean indoor if showers persist.',
+    },
+    {
+      id: 'sat',
+      date: new Date('2026-05-09'),
+      day: 9,
+      weekday: 'Saturday',
+      title: 'Bloomington · Graduation Day',
+      location: 'Bloomington',
+      loc: BLOOM,
+      schedule: [
+        { time: 'Late morning',   text: 'Drive Indianapolis → Bloomington (~1 hr)' },
+        { time: '12:30–2:30 PM',  text: 'Campus walk · Sample Gates, Showalter Fountain', addr: 'E Kirkwood Ave & S Indiana Ave, Bloomington, IN 47405' },
+        { time: '3:00 PM',        text: '<strong>Max\u2019s Place</strong> — graduation dinner with the group', addr: '1280 N College Ave, Suite 3, Bloomington, IN 47404' },
+        { time: 'After dinner',   text: 'Kirkwood Avenue, coffee, or rest at IMU', addr: '900 E 7th St, Bloomington, IN 47405' },
+        { time: '6:15 PM',        text: 'Head to IU Auditorium — arrive early', addr: '1211 E 7th St, Bloomington, IN 47405' },
+        { time: '7:00 PM',        text: '<strong>Kelley Direct Recognition Ceremony</strong>', addr: '1211 E 7th St, Bloomington, IN 47405' },
+        { time: 'After ceremony', text: 'Drive back to Indianapolis' },
+      ],
+      note: 'Strollers are NOT permitted inside the IU Auditorium — use baby carriers. Plan a downtime block between dinner and ceremony.',
+    },
+    {
+      id: 'sun',
+      date: new Date('2026-05-10'),
+      day: 10,
+      weekday: 'Sunday',
+      title: 'Departure',
+      location: 'Indianapolis → DFW',
+      loc: INDY,
+      schedule: [
+        { time: 'Morning',   text: 'Pack up, last coffee / breakfast' },
+        { time: '11:00 AM',  text: '<strong>Airbnb checkout</strong>', addr: '1243 Drive Martin Luther King Junior Street, Indianapolis, IN' },
+        { time: 'Before flight', text: 'Return National rental at IND Executive Area', addr: '7800 Col. H. Weir Cook Memorial Dr, Indianapolis, IN' },
+        { time: 'Before flight', text: 'Return Turo Mercedes-Benz GLS at IND', addr: '7800 Col. H. Weir Cook Memorial Dr, Indianapolis, IN' },
+        { time: '11:49 AM',  text: '<strong>Depart IND</strong> — American 2180', addr: '7800 Col. H. Weir Cook Memorial Dr, Indianapolis, IN' },
+        { time: '1:18 PM',   text: 'Arrive DFW' },
+      ],
+      note: 'Turo return is set for noon, but flight is at 11:49 AM. Push the return earlier OR have a non-flying family member return it.',
+    },
+  ];
+
+  const fmt = (d) => d.toISOString().slice(0, 10);
+
+  // -------- MAP LINK HELPER --------
+  const isApple = /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent);
+  const mapLink = (addr) => {
+    const q = encodeURIComponent(addr);
+    return isApple
+      ? `https://maps.apple.com/?q=${q}`
+      : `https://www.google.com/maps/search/?api=1&query=${q}`;
+  };
+
+  const PIN_SVG = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>`;
+
+  const codeMap = {
+    0: { label: 'Clear', icon: '☀︎' },
+    1: { label: 'Mostly clear', icon: '☀︎' },
+    2: { label: 'Partly cloudy', icon: '⛅' },
+    3: { label: 'Overcast', icon: '☁︎' },
+    45: { label: 'Fog', icon: '☁︎' },
+    48: { label: 'Fog', icon: '☁︎' },
+    51: { label: 'Light drizzle', icon: '☂︎' },
+    53: { label: 'Drizzle', icon: '☂︎' },
+    55: { label: 'Heavy drizzle', icon: '☂︎' },
+    61: { label: 'Light rain', icon: '☂︎' },
+    63: { label: 'Rain', icon: '☂︎' },
+    65: { label: 'Heavy rain', icon: '☂︎' },
+    71: { label: 'Light snow', icon: '❄︎' },
+    73: { label: 'Snow', icon: '❄︎' },
+    75: { label: 'Heavy snow', icon: '❄︎' },
+    80: { label: 'Showers', icon: '☂︎' },
+    81: { label: 'Showers', icon: '☂︎' },
+    82: { label: 'Heavy showers', icon: '☂︎' },
+    95: { label: 'Thunderstorms', icon: '⚡' },
+    96: { label: 'Thunderstorms', icon: '⚡' },
+    99: { label: 'Thunderstorms', icon: '⚡' },
+  };
+  const codeInfo = (c) => codeMap[c] || { label: '—', icon: '·' };
+
+  // -------- RENDER GLANCE STRIP --------
+  const glanceEl = document.getElementById('glance');
+  DAYS.forEach((d) => {
+    const card = document.createElement('div');
+    card.className = 'glance-card';
+    card.dataset.dayId = d.id;
+    card.innerHTML = `
+      <div class="glance-day">${d.weekday.slice(0,3)} · May ${d.day}</div>
+      <div class="glance-date">${d.day}</div>
+      <div class="glance-loc">${d.location}</div>
+      <div class="glance-temp skel" data-wx="temp"></div>
+      <div class="glance-cond skel" data-wx="cond"></div>
+    `;
+    card.addEventListener('click', () => {
+      const target = document.getElementById('day-' + d.id);
+      if (target) {
+        target.classList.add('open');
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    });
+    glanceEl.appendChild(card);
+  });
+
+  // -------- RENDER DAYS --------
+  const daysEl = document.getElementById('days');
+  DAYS.forEach((d, idx) => {
+    const dEl = document.createElement('article');
+    dEl.className = 'day';
+    dEl.id = 'day-' + d.id;
+    if (idx === 0) dEl.classList.add('open');
+    dEl.innerHTML = `
+      <header class="day-header">
+        <div class="day-num">${d.day}<span class="month">May</span></div>
+        <div class="day-info">
+          <div class="day-name">${d.weekday}</div>
+          <div class="day-title">${d.title}</div>
+          <div class="day-loc"><strong>${d.location}</strong></div>
+        </div>
+        <div class="day-weather">
+          <div class="day-weather-temp"><span class="skel" data-wx="temp"></span></div>
+          <div class="day-weather-cond"><span class="skel" data-wx="cond"></span></div>
+        </div>
+        <div class="day-toggle">▾</div>
+      </header>
+      <div class="day-body">
+        <div class="day-body-inner">
+          <div class="schedule">
+            ${d.schedule.map(s => `
+              <div class="sched-item">
+                <div class="sched-time">${s.time}</div>
+                <div class="sched-act">
+                  <span>${s.text}</span>
+                  ${s.addr ? `<a class="sched-pin" href="${mapLink(s.addr)}" target="_blank" rel="noopener" aria-label="Directions to ${s.text.replace(/<[^>]+>/g, '').replace(/"/g, '&quot;')}" title="Get directions">${PIN_SVG}</a>` : ''}
+                </div>
+              </div>
+            `).join('')}
+          </div>
+          <aside class="day-side">
+            <h4>Forecast Detail</h4>
+            <div data-wx-detail="${d.id}">
+              <div class="wx-detail-row"><span>Conditions</span><span class="skel" style="width:80px"></span></div>
+              <div class="wx-detail-row"><span>High</span><span class="skel" style="width:50px"></span></div>
+              <div class="wx-detail-row"><span>Low</span><span class="skel" style="width:50px"></span></div>
+              <div class="wx-detail-row"><span>Precipitation</span><span class="skel" style="width:60px"></span></div>
+              <div class="wx-detail-row"><span>Wind</span><span class="skel" style="width:70px"></span></div>
+              <div class="wx-detail-row"><span>Sunrise</span><span class="skel" style="width:60px"></span></div>
+              <div class="wx-detail-row"><span>Sunset</span><span class="skel" style="width:60px"></span></div>
+            </div>
+            ${d.note ? `<div class="day-note">${d.note}</div>` : ''}
+          </aside>
+        </div>
+      </div>
+    `;
+    daysEl.appendChild(dEl);
+
+    dEl.querySelector('.day-header').addEventListener('click', () => {
+      dEl.classList.toggle('open');
+    });
+  });
+
+  // -------- PLACES --------
+  const PLACES = [
+    {
+      cat: 'Lodging',
+      name: 'Airbnb · Hosted by Austin',
+      addr: '1243 Drive Martin Luther King Junior Street, Indianapolis, IN',
+      icon: 'A',
+    },
+    {
+      cat: 'Airport',
+      name: 'Indianapolis International (IND)',
+      addr: '7800 Col. H. Weir Cook Memorial Dr, Indianapolis, IN',
+      icon: '✈',
+    },
+    {
+      cat: 'Friday · 8 PM',
+      name: 'Vida',
+      addr: '601 E New York St, Indianapolis, IN 46202',
+      icon: 'V',
+    },
+    {
+      cat: 'Saturday · 3 PM',
+      name: "Max's Place",
+      addr: '1280 N College Ave, Suite 3, Bloomington, IN 47404',
+      icon: 'M',
+    },
+    {
+      cat: 'Saturday · 7 PM',
+      name: 'IU Auditorium',
+      addr: '1211 E 7th St, Bloomington, IN 47405',
+      icon: '★',
+    },
+    {
+      cat: 'Campus',
+      name: 'Sample Gates',
+      addr: 'E Kirkwood Ave & S Indiana Ave, Bloomington, IN 47405',
+      icon: '⌂',
+    },
+    {
+      cat: 'Campus',
+      name: 'Indiana Memorial Union',
+      addr: '900 E 7th St, Bloomington, IN 47405',
+      icon: '⌂',
+    },
+    {
+      cat: 'Friday Activity',
+      name: "Children's Museum of Indianapolis",
+      addr: '3000 N Meridian St, Indianapolis, IN 46208',
+      icon: '◐',
+    },
+    {
+      cat: 'Friday Activity',
+      name: 'Conner Prairie',
+      addr: '13400 Allisonville Rd, Fishers, IN 46038',
+      icon: '◐',
+    },
+  ];
+
+  const placesEl = document.getElementById('places');
+  PLACES.forEach((p) => {
+    const a = document.createElement('a');
+    a.className = 'place';
+    a.href = mapLink(p.addr);
+    a.target = '_blank';
+    a.rel = 'noopener';
+    a.innerHTML = `
+      <div class="place-icon">${p.icon}</div>
+      <div class="place-body">
+        <div class="place-cat">${p.cat}</div>
+        <div class="place-name">${p.name}</div>
+        <div class="place-addr">${p.addr}</div>
+      </div>
+      <div class="place-arrow">→</div>
+    `;
+    placesEl.appendChild(a);
+  });
+
+  // -------- WEATHER FETCH --------
+  async function fetchWeather() {
+    const startDate = '2026-05-07';
+    const endDate = '2026-05-10';
+    const fields = 'weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,precipitation_probability_max,wind_speed_10m_max,sunrise,sunset';
+
+    const buildUrl = (loc) =>
+      `https://api.open-meteo.com/v1/forecast?latitude=${loc.lat}&longitude=${loc.lon}` +
+      `&daily=${fields}&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch` +
+      `&timezone=America%2FIndiana%2FIndianapolis&start_date=${startDate}&end_date=${endDate}`;
+
+    const [indyRes, bloomRes] = await Promise.all([
+      fetch(buildUrl(INDY)),
+      fetch(buildUrl(BLOOM)),
+    ]);
+    if (!indyRes.ok || !bloomRes.ok) throw new Error('Weather API error');
+    const [indy, bloom] = await Promise.all([indyRes.json(), bloomRes.json()]);
+    return { indy, bloom };
+  }
+
+  function pickDay(data, isoDate) {
+    const idx = data.daily.time.indexOf(isoDate);
+    if (idx < 0) return null;
+    return {
+      code: data.daily.weather_code[idx],
+      hi: Math.round(data.daily.temperature_2m_max[idx]),
+      lo: Math.round(data.daily.temperature_2m_min[idx]),
+      precip: data.daily.precipitation_sum[idx],
+      precipProb: data.daily.precipitation_probability_max[idx],
+      wind: Math.round(data.daily.wind_speed_10m_max[idx]),
+      sunrise: data.daily.sunrise[idx],
+      sunset: data.daily.sunset[idx],
+    };
+  }
+
+  function fmtTime(iso) {
+    const d = new Date(iso);
+    return d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+  }
+
+  async function loadWeather() {
+    const btn = document.getElementById('refresh-btn');
+    btn.classList.add('loading');
+    try {
+      const { indy, bloom } = await fetchWeather();
+      DAYS.forEach((d) => {
+        const data = d.loc === BLOOM ? bloom : indy;
+        const w = pickDay(data, fmt(d.date));
+        if (!w) return;
+        const info = codeInfo(w.code);
+
+        // Glance card
+        const glanceCard = document.querySelector(`.glance-card[data-day-id="${d.id}"]`);
+        if (glanceCard) {
+          const t = glanceCard.querySelector('[data-wx="temp"]');
+          const c = glanceCard.querySelector('[data-wx="cond"]');
+          t.classList.remove('skel');
+          c.classList.remove('skel');
+          t.innerHTML = `${w.hi}° <span class="lo">/ ${w.lo}°</span>`;
+          c.innerHTML = `${info.icon} ${info.label}`;
+        }
+
+        // Day header
+        const dayEl = document.getElementById('day-' + d.id);
+        if (dayEl) {
+          const t = dayEl.querySelector('.day-weather-temp .skel');
+          const c = dayEl.querySelector('.day-weather-cond .skel');
+          if (t) {
+            t.outerHTML = `${w.hi}° <span class="lo">/ ${w.lo}°</span>`;
+          }
+          if (c) {
+            c.outerHTML = `${info.icon} ${info.label}`;
+          }
+        }
+
+        // Forecast detail
+        const detailBox = document.querySelector(`[data-wx-detail="${d.id}"]`);
+        if (detailBox) {
+          detailBox.innerHTML = `
+            <div class="wx-detail-row"><span>Conditions</span><span>${info.icon} ${info.label}</span></div>
+            <div class="wx-detail-row"><span>High</span><span>${w.hi}°F</span></div>
+            <div class="wx-detail-row"><span>Low</span><span>${w.lo}°F</span></div>
+            <div class="wx-detail-row"><span>Precip chance</span><span>${w.precipProb ?? '—'}%</span></div>
+            <div class="wx-detail-row"><span>Rainfall</span><span>${w.precip?.toFixed(2) ?? '—'}″</span></div>
+            <div class="wx-detail-row"><span>Wind max</span><span>${w.wind} mph</span></div>
+            <div class="wx-detail-row"><span>Sunrise</span><span>${fmtTime(w.sunrise)}</span></div>
+            <div class="wx-detail-row"><span>Sunset</span><span>${fmtTime(w.sunset)}</span></div>
+          `;
+        }
+      });
+      const stamp = new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+      document.getElementById('updated-stamp').textContent = `Updated ${stamp}`;
+      document.getElementById('footer-meta').textContent = `Live forecast from Open-Meteo · Updated ${stamp}`;
+    } catch (e) {
+      document.getElementById('updated-stamp').textContent = 'Forecast unavailable';
+      document.querySelectorAll('.skel').forEach(el => {
+        el.classList.remove('skel');
+        el.textContent = '—';
+      });
+    } finally {
+      setTimeout(() => btn.classList.remove('loading'), 600);
+    }
+  }
+
+  document.getElementById('refresh-btn').addEventListener('click', loadWeather);
+
+  // -------- COUNTDOWN --------
+  function tickCountdown() {
+    const now = new Date();
+    const diff = TRIP_START - now;
+    if (diff <= 0) {
+      document.getElementById('countdown').innerHTML =
+        '<div class="countdown-item"><div class="countdown-num">✈</div><div class="countdown-label">In flight</div></div>';
+      return;
+    }
+    const days = Math.floor(diff / 86400000);
+    const hours = Math.floor((diff % 86400000) / 3600000);
+    const mins = Math.floor((diff % 3600000) / 60000);
+    document.getElementById('cd-days').textContent = days;
+    document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
+    document.getElementById('cd-mins').textContent = String(mins).padStart(2, '0');
+  }
+  tickCountdown();
+  setInterval(tickCountdown, 60000);
+
+  // -------- REVEAL ON SCROLL --------
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // -------- KICK OFF --------
+  loadWeather();
+</script>
+</body>
+</html>
