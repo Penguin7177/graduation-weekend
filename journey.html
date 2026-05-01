@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="light only" />
+<meta name="theme-color" content="#990000" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="The Journey" />
+<meta name="mobile-web-app-capable" content="yes" />
+<title>The Journey · Application to Graduation</title>
+<link rel="manifest" href="/manifest.webmanifest" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: light;
+    --crimson: #990000;
+    --crimson-deep: #6b0000;
+    --crimson-soft: #fdf2f2;
+    --cream: #f5efe1;
+    --cream-deep: #ede4cf;
+    --paper: #fbf6ea;
+    --ink: #1a1612;
+    --ink-soft: #4a4540;
+    --ink-muted: #6e665a;
+    --rule: #e0d6bf;
+    --rule-soft: #ebe2cb;
+    --gold: #b8893a;
+    --gold-soft: #f5e8c8;
+    --shadow-sm: 0 1px 2px rgba(60, 40, 20, 0.05), 0 2px 8px rgba(60, 40, 20, 0.05);
+    --shadow-md: 0 2px 4px rgba(60, 40, 20, 0.06), 0 12px 32px rgba(60, 40, 20, 0.08);
+    --container: 960px;
+    --safe-x: max(20px, env(safe-area-inset-left));
+    --safe-x-r: max(20px, env(safe-area-inset-right));
+    --safe-top: env(safe-area-inset-top);
+    --safe-bottom: env(safe-area-inset-bottom);
+    --ease: cubic-bezier(0.2, 0.7, 0.3, 1);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Geist', -apple-system, sans-serif;
+    background-color: var(--cream);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    padding-top: var(--safe-top);
+  }
+
+  .paper-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    transform: translateZ(0);
+    will-change: transform;
+    background-color: var(--cream);
+    background-image:
+      repeating-linear-gradient(0deg, transparent 0, transparent 2px, rgba(120,90,50,0.012) 2px, rgba(120,90,50,0.012) 3px),
+      repeating-linear-gradient(90deg, transparent 0, transparent 3px, rgba(120,90,50,0.008) 3px, rgba(120,90,50,0.008) 4px),
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.4 0 0 0 0 0.3 0 0 0 0 0.15 0 0 0 0.18 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E"),
+      radial-gradient(ellipse at 15% 0%, rgba(184,137,58,0.06) 0%, transparent 55%),
+      radial-gradient(ellipse at 85% 100%, rgba(153,0,0,0.04) 0%, transparent 55%),
+      radial-gradient(ellipse at 50% 50%, transparent 60%, rgba(120,90,50,0.06) 100%);
+    background-size: auto, auto, 200px 200px, auto, auto, auto;
+  }
+
+  .container {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding-left: var(--safe-x);
+    padding-right: var(--safe-x-r);
+  }
+
+  .icon {
+    width: 1em;
+    height: 1em;
+    flex-shrink: 0;
+    vertical-align: -0.125em;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  /* ---------- NAV ---------- */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    background: transparent;
+    transition: backdrop-filter 0.3s, background 0.3s, border-color 0.3s;
+    border-bottom: 1px solid transparent;
+  }
+  .nav.scrolled {
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    background: rgba(245, 239, 225, 0.78);
+    border-bottom-color: var(--rule);
+  }
+  .nav-inner {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 12px var(--safe-x);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 56px;
+    gap: 12px;
+  }
+  .nav a {
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--ink-soft);
+    text-decoration: none;
+    padding: 12px 14px;
+    border-radius: 100px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 44px;
+    transition: color 0.2s, background 0.2s, transform 0.1s;
+  }
+  .nav a:hover { color: var(--crimson); }
+  .nav a:active { transform: scale(0.97); }
+  .nav .brand { color: var(--crimson); font-weight: 500; }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    padding: 56px var(--safe-x) 48px;
+    text-align: center;
+    position: relative;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 1px; height: 40px;
+    background: var(--crimson);
+    opacity: 0.5;
+  }
+  .hero-eyebrow {
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--crimson);
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: clamp(44px, 6.5vw, 80px);
+    line-height: 0.98;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--crimson);
+  }
+  .hero-sub {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: clamp(18px, 2.4vw, 22px);
+    color: var(--ink-soft);
+    max-width: 640px;
+    margin: 0 auto 28px;
+  }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    margin: 32px auto 0;
+    max-width: 580px;
+  }
+  .stat {
+    background: var(--paper);
+    padding: 20px 16px;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'Fraunces', serif;
+    font-size: 32px;
+    font-weight: 500;
+    color: var(--crimson);
+    line-height: 1;
+  }
+  .stat-label {
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--ink-muted);
+    margin-top: 8px;
+  }
+  @media (max-width: 540px) {
+    .stats { grid-template-columns: 1fr; }
+  }
+
+  /* SECTIONS */
+  section { padding: 56px 0; }
+  .section-head {
+    margin-bottom: 32px;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 14px;
+  }
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(26px, 3.4vw, 32px);
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+  }
+  .section-title em { font-style: italic; color: var(--crimson); font-weight: 400; }
+
+  /* TIMELINE */
+  .timeline {
+    position: relative;
+    padding-left: 44px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    bottom: 6px;
+    left: 14px;
+    width: 1px;
+    background: var(--rule);
+  }
+  .tl-item {
+    position: relative;
+    padding-bottom: 28px;
+  }
+  .tl-item:last-child { padding-bottom: 0; }
+  .tl-dot {
+    position: absolute;
+    left: -36px;
+    top: 4px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--cream);
+    border: 2px solid var(--crimson);
+  }
+  .tl-item.milestone .tl-dot {
+    background: var(--crimson);
+    box-shadow: 0 0 0 4px var(--crimson-soft);
+  }
+  /* Family milestones — gold, distinct from academic */
+  .tl-item.family .tl-dot {
+    background: var(--gold);
+    border-color: var(--gold);
+    box-shadow: 0 0 0 4px var(--gold-soft);
+  }
+  .tl-date {
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--crimson);
+    margin-bottom: 4px;
+  }
+  .tl-item.family .tl-date { color: var(--gold); }
+  .tl-title {
+    font-family: 'Fraunces', serif;
+    font-size: 19px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .tl-item.family .tl-title { font-style: italic; }
+  .tl-body {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 56px var(--safe-x) calc(64px + var(--safe-bottom));
+    text-align: center;
+    border-top: 1px solid var(--rule);
+    margin-top: 32px;
+  }
+  .footer-mark {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--crimson);
+    margin-bottom: 8px;
+  }
+  .footer-meta {
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s, transform 0.7s var(--ease);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  @media (max-width: 540px) {
+    .hero { padding: 40px 20px 32px; }
+    section { padding: 44px 0; }
+    .section-title { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="paper-bg" aria-hidden="true"></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-arrow-left" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 8H3"/><polyline points="7 4 3 8 7 12"/></symbol>
+  </defs>
+</svg>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand"><svg class="icon" aria-hidden="true"><use href="#i-arrow-left"/></svg> Graduation Weekend</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-eyebrow">Indiana University · Kelley Direct MBA</div>
+  <h1>The <em>Journey</em></h1>
+  <div class="hero-sub">From application to graduation — the road from Spring 2024 to the IU Auditorium stage on May 9, 2026.</div>
+  <div class="stats">
+    <div class="stat"><div class="stat-num">2.5</div><div class="stat-label">Years</div></div>
+    <div class="stat"><div class="stat-num">19</div><div class="stat-label">Courses</div></div>
+    <div class="stat"><div class="stat-num">46.5</div><div class="stat-label">Credit Hrs</div></div>
+  </div>
+</header>
+
+<section class="container reveal">
+  <div class="section-head"><h2 class="section-title">The <em>Journey</em></h2></div>
+  <div class="timeline">
+    <div class="tl-item milestone">
+      <div class="tl-dot"></div>
+      <div class="tl-date">September 29, 2023</div>
+      <div class="tl-title">Accepted to Kelley Direct</div>
+      <div class="tl-body">Welcome from Abigail Gschwend, Associate Director — Spring 2024 cohort.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-date">October 12, 2023</div>
+      <div class="tl-title">Kelley Kickoff</div>
+      <div class="tl-body">Met cohort, walked the Kelley Direct roadmap.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-date">November 30, 2023</div>
+      <div class="tl-title">IU account created</div>
+      <div class="tl-body">Identity provisioned for student systems and Canvas.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-date">December 8, 2023</div>
+      <div class="tl-title">Orientation portal opens</div>
+      <div class="tl-body">Self-paced modules through Canvas.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-date">January 12, 2024</div>
+      <div class="tl-title">Jump Start session</div>
+      <div class="tl-body">Final prep call before Core 1 began.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-date">January 24, 2024</div>
+      <div class="tl-title">First course registration</div>
+      <div class="tl-body">Locked in the Spring 2024 schedule — Economics, Business Law, Leading Organizations.</div>
+    </div>
+    <div class="tl-item milestone">
+      <div class="tl-dot"></div>
+      <div class="tl-date">February 2024</div>
+      <div class="tl-title">Spring 2024 begins</div>
+      <div class="tl-body">First class session. The MBA officially started.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-date">May 2024</div>
+      <div class="tl-title">Summer 2024</div>
+    </div>
+    <div class="tl-item family">
+      <div class="tl-dot"></div>
+      <div class="tl-date">August 31, 2024</div>
+      <div class="tl-title">Judah is born</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-date">September 2024</div>
+      <div class="tl-title">Fall 2024</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-date">December 2024</div>
+      <div class="tl-title">Winter 2024</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-date">Spring 2025</div>
+      <div class="tl-title">Integrated Capstone</div>
+      <div class="tl-body">Capstone course. Synthesized strategy, finance, marketing, and operations into a single applied project.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-date">Summer 2025</div>
+      <div class="tl-title">Summer 2025</div>
+    </div>
+    <div class="tl-item milestone">
+      <div class="tl-dot"></div>
+      <div class="tl-date">Fall 2025</div>
+      <div class="tl-title">Global Immersion · Paris</div>
+      <div class="tl-body">Experiential MBA course in Paris. International business in context — site visits, briefings, and a different lens on strategy.</div>
+    </div>
+    <div class="tl-item family">
+      <div class="tl-dot"></div>
+      <div class="tl-date">November 20, 2025</div>
+      <div class="tl-title">Archer is born</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-date">Winter 2025</div>
+      <div class="tl-title">Final term</div>
+      <div class="tl-body">Last courses on the books — Marketing-Driven Growth and Leadership &amp; People Management. 46.5 credits earned.</div>
+    </div>
+    <div class="tl-item milestone">
+      <div class="tl-dot"></div>
+      <div class="tl-date">May 9, 2026</div>
+      <div class="tl-title">Recognition Ceremony</div>
+      <div class="tl-body">IU Auditorium, Bloomington. The walk across the stage.</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-mark">Go Hoosiers · Class of 2026</div>
+  <div class="footer-meta">Kelley Direct Online MBA · Indiana University Bloomington</div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.18 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  const navEl = document.getElementById('nav');
+  const onScroll = () => {
+    if (window.scrollY > 8) navEl.classList.add('scrolled');
+    else navEl.classList.remove('scrolled');
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+</script>
+</body>
+</html>
