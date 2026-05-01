@@ -422,6 +422,24 @@
     margin-top: 6px;
     font-style: italic;
   }
+  .glance-cta {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--rule-soft);
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--crimson);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: gap 0.2s var(--ease);
+  }
+  .glance-cta .icon { width: 12px; height: 12px; transition: transform 0.2s var(--ease); }
+  .glance-card:hover .glance-cta { gap: 10px; }
+  .glance-card:hover .glance-cta .icon { transform: translateX(2px); }
   .skel {
     color: transparent;
     background: linear-gradient(90deg, #eee 0%, #f5f5f5 50%, #eee 100%);
@@ -1108,26 +1126,14 @@
     .day-title { font-size: 19px; }
   }
 
-  /* Glance cards become a swipeable horizontal lane on mobile */
+  /* Glance cards: 2x2 grid on mobile so all four days are visible without scrolling */
   @media (max-width: 720px) {
-    .glance {
-      display: flex;
-      grid-template-columns: none;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      gap: 1px;
-      border-radius: 8px;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-      padding: 1px;
-    }
-    .glance::-webkit-scrollbar { display: none; }
-    .glance-card {
-      flex: 0 0 64%;
-      scroll-snap-align: center;
-    }
-    .glance-card:first-child { scroll-snap-align: start; }
-    .glance-card:last-child  { scroll-snap-align: end; }
+    .glance { grid-template-columns: repeat(2, 1fr); }
+    .glance-card { padding: 18px 16px; }
+    .glance-date { font-size: 26px; margin-bottom: 8px; }
+    .glance-loc { font-size: 11px; margin-bottom: 12px; }
+    .glance-temp { font-size: 18px; }
+    .glance-cta { margin-top: 12px; padding-top: 10px; }
   }
 
   @media (max-width: 540px) {
@@ -1408,6 +1414,7 @@
       <div class="glance-loc">${d.location}</div>
       <div class="glance-temp"><span class="skel" data-wx="temp"></span></div>
       <div class="glance-cond"><span class="skel" data-wx="cond"></span></div>
+      <div class="glance-cta">View day ${svgIcon('i-arrow-right')}</div>
     `;
     card.addEventListener('click', () => {
       const target = document.getElementById('day-' + d.id);
@@ -1426,8 +1433,7 @@
     const dEl = document.createElement('article');
     dEl.className = 'day';
     dEl.id = 'day-' + d.id;
-    if (idx === 0) dEl.classList.add('open');
-    const expanded = idx === 0 ? 'true' : 'false';
+    const expanded = 'false';
     dEl.innerHTML = `
       <button type="button" class="day-header" aria-expanded="${expanded}" aria-controls="day-body-${d.id}">
         <div class="day-num">${d.day}<span class="month">May</span></div>
