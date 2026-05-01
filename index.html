@@ -809,6 +809,131 @@
   }
   .sched-act > span:first-child { flex: 1; }
   .sched-act strong { font-weight: 600; }
+  .sched-text-wrap { display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 0; }
+  .sched-notice {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--crimson);
+    background: var(--crimson-soft);
+    border: 1px solid var(--rule);
+    border-radius: 100px;
+    padding: 6px 12px;
+    cursor: pointer;
+    text-decoration: none;
+    min-height: 28px;
+    transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.1s;
+  }
+  .sched-notice:hover { background: var(--crimson); color: white; border-color: var(--crimson); }
+  .sched-notice:active { transform: scale(0.97); }
+  .sched-notice .icon { width: 12px; height: 12px; }
+
+  /* ---------- MODAL ---------- */
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(26, 22, 18, 0.55);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s var(--ease);
+  }
+  .modal-backdrop.open { opacity: 1; pointer-events: auto; }
+  .modal {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    box-shadow: var(--shadow-lg);
+    max-width: 540px;
+    width: 100%;
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    transform: translateY(12px) scale(0.98);
+    transition: transform 0.3s var(--ease);
+  }
+  .modal-backdrop.open .modal { transform: translateY(0) scale(1); }
+  .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 22px 24px 14px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .modal-title {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .modal-close {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--rule);
+    background: transparent;
+    color: var(--ink-soft);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.1s;
+  }
+  .modal-close:hover { background: var(--crimson); color: white; border-color: var(--crimson); }
+  .modal-close:active { transform: scale(0.94); }
+  .modal-close .icon { width: 14px; height: 14px; }
+  .modal-body {
+    padding: 20px 24px 24px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+  .modal-body p + p,
+  .modal-body p + ul,
+  .modal-body ul + p { margin-top: 12px; }
+  .modal-body strong { color: var(--ink); font-weight: 600; }
+  .modal-body ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .modal-body li {
+    position: relative;
+    padding-left: 18px;
+    line-height: 1.5;
+  }
+  .modal-body li::before {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 9px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--crimson);
+  }
+  .modal-body a {
+    color: var(--crimson);
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+  }
+  .modal-body a:hover { color: var(--crimson-deep); }
   .sched-pin {
     flex-shrink: 0;
     width: 44px;
@@ -1127,6 +1252,18 @@
   <div class="places" id="places"></div>
 </section>
 
+<div class="modal-backdrop" id="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+  <div class="modal" role="document">
+    <div class="modal-header">
+      <h3 class="modal-title" id="modal-title"></h3>
+      <button type="button" class="modal-close" id="modal-close" aria-label="Close">
+        <svg class="icon" aria-hidden="true" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="4" y1="4" x2="12" y2="12"/><line x1="12" y1="4" x2="4" y2="12"/></svg>
+      </button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
 <footer>
   <div class="footer-mark">Go Hoosiers · Class of 2026</div>
   <div class="footer-meta" id="footer-meta">Live forecast from Open-Meteo</div>
@@ -1175,12 +1312,10 @@
         { time: '12:30–2:30 PM',  text: 'Campus walk · Sample Gates, Showalter Fountain', addr: 'E Kirkwood Ave & S Indiana Ave, Bloomington, IN 47405' },
         { time: '3:00 PM',        text: '<strong>Max’s Place</strong> — graduation dinner', addr: '1280 N College Ave, Suite 3, Bloomington, IN 47404' },
         { time: 'After dinner',   text: 'Kirkwood Avenue, coffee, or rest at IMU', addr: '900 E 7th St, Bloomington, IN 47405' },
-        { time: '6:15 PM',        text: 'Head to IU Auditorium — arrive early', addr: '1211 E 7th St, Bloomington, IN 47405' },
+        { time: '6:15 PM',        text: 'Head to IU Auditorium — arrive early', addr: '1211 E 7th St, Bloomington, IN 47405', notice: { id: 'iu-auditorium-rules', label: 'IU Auditorium Rules' } },
         { time: '7:00 PM',        text: '<strong>Kelley Direct Reception and Recognition Ceremony</strong>', addr: '1211 E 7th St, Bloomington, IN 47405' },
         { time: 'After ceremony', text: 'Drive back to Indianapolis' },
       ],
-      warning: '<span class="callout-title">IU Auditorium policies</span><ul><li>Bags larger than a small clutch (~4.5″ × 6.5″) should be clear; <strong>diaper bags are exempt</strong>. All bags may be inspected.</li><li>Strollers are permitted in the building but <strong>must be checked before entering the seating area</strong>.</li><li>Signs, flags, and similar items are not permitted — clear sightlines for all guests.</li><li>Outside food and beverages are not permitted.</li></ul>',
-      info: '<span class="callout-title">Can\'t make it in person?</span>The ceremony will be available via live stream at <a href="https://broadcast.iu.edu" target="_blank" rel="noopener">broadcast.iu.edu</a>.',
     },
     {
       id: 'sun', date: new Date('2026-05-10'), day: 10, weekday: 'Sunday',
@@ -1189,13 +1324,35 @@
         { time: 'Morning',   text: 'Pack up, last coffee / breakfast' },
         { time: '11:00 AM',  text: '<strong>Airbnb checkout</strong>', addr: '1243 Drive Martin Luther King Junior Street, Indianapolis, IN' },
         { time: 'Before flight', text: 'Return National rental at IND Executive Area', addr: '7800 Col. H. Weir Cook Memorial Dr, Indianapolis, IN' },
-        { time: 'Before flight', text: 'Return Turo Mercedes-Benz GLS at IND', addr: '7800 Col. H. Weir Cook Memorial Dr, Indianapolis, IN' },
+        { time: 'Before flight', text: 'Return Turo Mercedes-Benz GLS at IND', addr: '7800 Col. H. Weir Cook Memorial Dr, Indianapolis, IN', notice: { id: 'turo-return-conflict', label: 'Return time conflict' } },
         { time: '11:49 AM',  text: '<strong>Depart IND</strong> — American 2180', addr: '7800 Col. H. Weir Cook Memorial Dr, Indianapolis, IN' },
         { time: '1:18 PM',   text: 'Arrive DFW' },
       ],
-      warning: '<strong>Turo return conflicts with the flight.</strong> Return is at noon, but our flight leaves at 11:49 AM. Push the return earlier — or have a non-flying family member return it.',
     },
   ];
+
+  // -------- NOTICES (modal content tied to specific schedule items) --------
+  const NOTICES = {
+    'iu-auditorium-rules': {
+      title: 'IU Auditorium Rules',
+      body: `
+        <p>A few policies to know before arriving at the auditorium:</p>
+        <ul>
+          <li>Bags larger than a small clutch (~4.5″ × 6.5″) should be clear; <strong>diaper bags are exempt</strong>. All bags may be inspected.</li>
+          <li>Strollers are permitted in the building but <strong>must be checked before entering the seating area</strong>.</li>
+          <li>Signs, flags, and similar items are not permitted — clear sightlines for all guests.</li>
+          <li>Outside food and beverages are not permitted.</li>
+        </ul>
+      `,
+    },
+    'turo-return-conflict': {
+      title: 'Turo Return Time Conflict',
+      body: `
+        <p><strong>The Turo return is scheduled for noon, but our flight leaves at 11:49 AM.</strong></p>
+        <p>Push the return earlier with the host — or have a non-flying family member return it after drop-off.</p>
+      `,
+    },
+  };
 
   const fmt = (d) => d.toISOString().slice(0, 10);
 
@@ -1293,7 +1450,10 @@
                 <div class="sched-item">
                   <div class="sched-time">${s.time}</div>
                   <div class="sched-act">
-                    <span>${s.text}</span>
+                    <div class="sched-text-wrap">
+                      <span>${s.text}</span>
+                      ${s.notice ? `<button type="button" class="sched-notice" data-notice="${s.notice.id}">${svgIcon('i-warning')} ${s.notice.label}</button>` : ''}
+                    </div>
                     ${s.addr ? `<a class="sched-pin" href="${mapLink(s.addr)}" target="_blank" rel="noopener" aria-label="Directions to ${s.text.replace(/<[^>]+>/g, '').replace(/"/g, '&quot;')}" title="Get directions">${svgIcon('i-pin')}</a>` : ''}
                   </div>
                 </div>
@@ -1320,8 +1480,6 @@
                   </div>
                 </div>
               </div>
-              ${d.warning ? `<div class="callout">${svgIcon('i-warning')}<div>${d.warning}</div></div>` : ''}
-              ${d.info ? `<div class="callout info">${svgIcon('i-broadcast')}<div>${d.info}</div></div>` : ''}
             </aside>
           </div>
         </div>
@@ -1340,6 +1498,44 @@
       const expanded = forecastBtn.getAttribute('aria-expanded') === 'true';
       forecastBtn.setAttribute('aria-expanded', expanded ? 'false' : 'true');
     });
+
+    dEl.querySelectorAll('.sched-notice').forEach((btn) => {
+      btn.addEventListener('click', () => openNotice(btn.dataset.notice));
+    });
+  });
+
+  // -------- MODAL --------
+  const modalBackdrop = document.getElementById('modal-backdrop');
+  const modalTitle = document.getElementById('modal-title');
+  const modalBody = document.getElementById('modal-body');
+  const modalClose = document.getElementById('modal-close');
+  let lastFocused = null;
+
+  function openNotice(id) {
+    const notice = NOTICES[id];
+    if (!notice) return;
+    lastFocused = document.activeElement;
+    modalTitle.textContent = notice.title;
+    modalBody.innerHTML = notice.body;
+    modalBackdrop.hidden = false;
+    requestAnimationFrame(() => modalBackdrop.classList.add('open'));
+    document.body.style.overflow = 'hidden';
+    modalClose.focus();
+  }
+
+  function closeModal() {
+    modalBackdrop.classList.remove('open');
+    document.body.style.overflow = '';
+    setTimeout(() => { modalBackdrop.hidden = true; }, 250);
+    if (lastFocused && lastFocused.focus) lastFocused.focus();
+  }
+
+  modalClose.addEventListener('click', closeModal);
+  modalBackdrop.addEventListener('click', (e) => {
+    if (e.target === modalBackdrop) closeModal();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !modalBackdrop.hidden) closeModal();
   });
 
   // -------- PLACES --------
