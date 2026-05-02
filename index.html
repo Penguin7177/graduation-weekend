@@ -268,26 +268,7 @@
     animation: fadeUp 0.9s 0.35s forwards;
   }
 
-  /* ---------- COUNTDOWN SECTION ---------- */
-  .countdown-section {
-    padding: 8px 0 40px;
-    text-align: center;
-  }
-  .countdown-meta {
-    margin-top: 22px;
-    display: inline-flex;
-    align-items: center;
-    gap: 14px;
-    font-family: 'Geist Mono', monospace;
-    font-size: 11px;
-    color: var(--ink-muted);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .countdown-meta span { display: inline-flex; align-items: center; gap: 6px; }
-  .countdown-meta .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--ink-muted); }
+  .hero-content .countdown { margin-top: 10px; }
   .live-indicator {
     width: 6px; height: 6px;
     border-radius: 50%;
@@ -1174,7 +1155,6 @@
   @media (max-width: 540px) {
     .hero-content { padding-bottom: clamp(60px, 14vh, 110px); gap: 14px; }
     .countdown { gap: 18px; }
-    .countdown-section { padding: 4px 0 32px; }
     .logistics { grid-template-columns: 1fr; }
     section { padding: 44px 0; }
     .section-title { font-size: 24px; }
@@ -1229,22 +1209,14 @@
   <div class="hero-content">
     <h1 class="hero-title">Graduation<em>Weekend</em></h1>
     <div class="hero-date">May 7–10, 2026</div>
+    <div class="countdown" id="countdown">
+      <div class="countdown-item"><div class="countdown-num" id="cd-days">—</div><div class="countdown-label">Days</div></div>
+      <div class="countdown-item"><div class="countdown-num" id="cd-hours">—</div><div class="countdown-label">Hours</div></div>
+      <div class="countdown-item"><div class="countdown-num" id="cd-mins">—</div><div class="countdown-label">Min</div></div>
+      <div class="countdown-item"><div class="countdown-num" id="cd-secs">—</div><div class="countdown-label">Sec</div></div>
+    </div>
   </div>
 </header>
-
-<section class="countdown-section">
-  <div class="countdown" id="countdown">
-    <div class="countdown-item"><div class="countdown-num" id="cd-days">—</div><div class="countdown-label">Days</div></div>
-    <div class="countdown-item"><div class="countdown-num" id="cd-hours">—</div><div class="countdown-label">Hours</div></div>
-    <div class="countdown-item"><div class="countdown-num" id="cd-mins">—</div><div class="countdown-label">Min</div></div>
-    <div class="countdown-item"><div class="countdown-num" id="cd-secs">—</div><div class="countdown-label">Sec</div></div>
-  </div>
-  <div class="countdown-meta">
-    <span><span class="live-indicator"></span> Live forecast</span>
-    <span class="dot"></span>
-    <span id="updated-stamp">Loading…</span>
-  </div>
-</section>
 
 <section class="container reveal" id="glance">
   <div class="section-head"><h2 class="section-title">At a <em>Glance</em></h2></div>
@@ -1668,7 +1640,6 @@
   function refreshStamp() {
     if (!lastFetchTs) return;
     const txt = `Updated ${relTime(lastFetchTs)}`;
-    document.getElementById('updated-stamp').textContent = txt;
     document.getElementById('footer-meta').textContent = `Live forecast from Open-Meteo · ${txt}`;
   }
   setInterval(refreshStamp, 30000);
@@ -1730,7 +1701,7 @@
       lastFetchTs = new Date();
       refreshStamp();
     } catch (e) {
-      document.getElementById('updated-stamp').textContent = 'Forecast unavailable';
+      document.getElementById('footer-meta').textContent = 'Forecast unavailable';
       document.querySelectorAll('.skel').forEach(el => {
         el.classList.remove('skel');
         el.textContent = '—';
