@@ -1718,6 +1718,7 @@
   }
 
   let celebrating = false;
+  let countdownInterval = null;
   function tickCountdown() {
     const now = new Date();
     const diff = TRIP_START - now;
@@ -1749,7 +1750,7 @@
     setDigit('cd-secs',  String(secs).padStart(2, '0'));
   }
   tickCountdown();
-  const countdownInterval = setInterval(tickCountdown, 1000);
+  countdownInterval = setInterval(tickCountdown, 1000);
 
   // -------- REVEAL ON SCROLL --------
   const observer = new IntersectionObserver((entries) => {
